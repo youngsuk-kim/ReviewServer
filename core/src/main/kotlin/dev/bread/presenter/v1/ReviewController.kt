@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class ReviewController(
-  private val reviewService: ReviewService
+    private val reviewService: ReviewService
 ) {
 
-  @PostMapping("/v1/reviews")
-  fun save(
-    @Validated @RequestBody
-    request: SaveReviewRequest
-  ): ApiResponse<Long> {
-    val id = reviewService.write(request)
+    @PostMapping("/v1/reviews")
+    fun save(
+        @Validated @RequestBody
+        request: SaveReviewRequest
+    ): ApiResponse<Long> {
+        val id = reviewService.write(request)
 
-    return ApiResponse.success(id)
-  }
+        return ApiResponse.success(id)
+    }
 }

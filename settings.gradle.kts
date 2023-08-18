@@ -2,7 +2,7 @@ rootProject.name = "mini-review"
 
 include(
     "core",
-    "api-doc",
+    "restdocs",
     "storage",
     "logging",
     "monitoring",

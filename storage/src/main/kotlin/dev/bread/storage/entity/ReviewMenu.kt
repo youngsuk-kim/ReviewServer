@@ -4,7 +4,7 @@ import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
 
 @Embeddable
-class MenuReview(
+class ReviewMenu(
 
     @Column(name = "RECOMMEND")
     var recommend: Boolean,
@@ -19,7 +19,7 @@ class MenuReview(
     var menuId: Long
 
 ) {
-    fun update(menuReview: MenuReview) {
-        this.menuId = menuReview.menuId
+    fun update(reviewMenu: ReviewMenu) {
+        this.menuId = reviewMenu.menuId
     }
 }

@@ -3,7 +3,6 @@ package dev.bread.storage.entity
 import jakarta.persistence.CollectionTable
 import jakarta.persistence.Column
 import jakarta.persistence.ElementCollection
-import jakarta.persistence.Embeddable
 import jakarta.persistence.Embedded
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
@@ -22,7 +21,7 @@ class Review(
         name = "REVIEW_MENU",
         joinColumns = [JoinColumn(name = "REVIEW_ID", referencedColumnName = "ID")]
     )
-    var menuReviews: MutableList<MenuReview>,
+    var reviewMenus: MutableList<ReviewMenu>,
 
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
@@ -33,7 +32,7 @@ class Review(
 
     @Embedded
     @Column(name = "MENU_REVIEW")
-    var deliveryReview: DeliveryReview,
+    var reviewDelivery: ReviewDelivery,
 
     @Embedded
     var content: ReviewContent,
@@ -46,28 +45,12 @@ class Review(
 
 ) : BaseEntity() {
 
-    fun update(menuReview: MenuReview, reviewImage: ReviewImage, content: ReviewContent) {
-        this.menuReviews.map { it.update(menuReview) }
+    fun update(reviewMenu: ReviewMenu, reviewImage: ReviewImage, content: ReviewContent) {
+        this.reviewMenus.map { it.update(reviewMenu) }
         this.reviewImages?.map { it.update(reviewImage) }
     }
 
     fun delete(delete: Boolean) {
         this.deleted = deleted
-    }
-}
-
-@Embeddable
-class ReviewContent(
-
-    @Column(name = "RATE")
-    var rate: Int,
-
-    @Column(name = "TEXT")
-    var text: String
-
-) {
-    fun update(rate: Int, text: String) {
-        this.rate = rate
-        this.text = text
     }
 }
