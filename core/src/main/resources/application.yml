@@ -1,0 +1,21 @@
+spring.application.name: core
+spring.profiles.active: local
+
+spring:
+  config:
+    import:
+      - logging.yml
+      - storage.yml
+      - monitoring.yml
+  mvc.throw-exception-if-no-handler-found: true
+  web.resources.add-mappings: false
+
+server:
+  tomcat:
+    max-connections: 20000
+    threads:
+      max: 600
+      min-spare: 100
+
+---
+spring.config.activate.on-profile: live
