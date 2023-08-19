@@ -50,6 +50,10 @@ class Review(
         this.reviewImages?.map { it.update(reviewImage) }
     }
 
+    fun rate(): Int {
+        return this.content.rate
+    }
+
     fun delete(delete: Boolean) {
         this.deleted = deleted
     }

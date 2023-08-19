@@ -95,4 +95,5 @@ subprojects {
     tasks.getByName("asciidoctor") {
         dependsOn("restDocsTest")
     }
+
 }
