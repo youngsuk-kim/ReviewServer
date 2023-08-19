@@ -1,6 +1,6 @@
 package dev.bread.storage.data
 
-data class ReviewMenuResult(
+data class ReviewMenuData(
     val koName: String,
     val enName: String,
     val secretMenu: Boolean,
