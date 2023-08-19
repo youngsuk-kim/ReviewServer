@@ -1,7 +1,6 @@
 package dev.bread.application
 
 import dev.bread.presenter.v1.request.SaveReviewRequest
-import dev.bread.storage.data.ReviewMenuResult
 import dev.bread.storage.repository.MenuRepositoryCustom
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -11,7 +10,6 @@ class ReviewService(
     private val reviewWriter: ReviewWriter,
     private val reviewReader: ReviewReader,
     private val memberReader: MemberReader,
-    private val menuReader: MenuReader,
     private val menuRepositoryCustom: MenuRepositoryCustom
 ) {
 
@@ -25,13 +23,16 @@ class ReviewService(
     @Transactional(readOnly = true)
     fun readOne(reviewId: Long, memberId: Long): ReviewResult {
         val member = memberReader.read(memberId)
-        val reviewCount = reviewReader.reviewCountByMemberId(memberId)
-        val reviewAverageRate = reviewReader.calculateAverageByMemberId(memberId)
-        val review = reviewReader.read(reviewId)
-
+        val review = reviewReader.readByMemberId(memberId)
         val menu = menuRepositoryCustom.findRecommend(memberId)
             ?.map { Menu(it.koName, it.enName, it.recommend) }
 
-        return ReviewResult(member.name, menu!!, reviewCount, reviewAverageRate!!, review.rate())
+        return ReviewResult(
+            userName = member.name,
+            menu = menu,
+            reviewCount = review?.count(),
+            averageRate = review?.map { it.rate() }?.average(),
+            storeRate = review?.find { it.id == reviewId }?.rate()
+        )
     }
 }

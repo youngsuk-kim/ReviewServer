@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional
 
 @Component
 class MenuReader(
-    private val menuRepository: MenuRepository,
+    private val menuRepository: MenuRepository
 ) {
     @Transactional(readOnly = true)
     fun read(menuId: Long): Menu {

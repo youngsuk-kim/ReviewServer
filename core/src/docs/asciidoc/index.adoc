@@ -12,9 +12,13 @@
 리뷰 서버 REST API 문서입니다.
 
 === 리뷰 작성 API
-==== Curl Request
-include::{snippets}/리뷰 작성/curl-request.adoc[]
 ==== Http Response
 include::{snippets}/리뷰 작성/http-response.adoc[]
 ==== Response Fields
 include::{snippets}/리뷰 작성/response-fields.adoc[]
+
+=== 리뷰 한개 불러오기 API
+==== Http Response
+include::{snippets}/리뷰 한개 불러오기/http-response.adoc[]
+==== Response Fields
+include::{snippets}/리뷰 한개 불러오기/response-fields.adoc[]
