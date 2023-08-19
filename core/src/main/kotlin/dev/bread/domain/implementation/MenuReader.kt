@@ -1,4 +1,4 @@
-package dev.bread.domain
+package dev.bread.domain.implementation
 
 import dev.bread.storage.entity.Menu
 import dev.bread.storage.repository.MenuRepository

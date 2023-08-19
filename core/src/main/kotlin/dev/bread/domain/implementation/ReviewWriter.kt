@@ -1,4 +1,4 @@
-package dev.bread.domain
+package dev.bread.domain.implementation
 
 import dev.bread.controller.v1.request.SaveReviewRequest
 import dev.bread.storage.entity.Review
