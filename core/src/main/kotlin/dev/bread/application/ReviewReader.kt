@@ -18,6 +18,12 @@ class ReviewReader(
     }
 
     @Transactional(readOnly = true)
+    fun readByMemberId(memberId: Long): List<Review>? {
+        return reviewRepository.findAllByMemberId(memberId)
+    }
+
+
+    @Transactional(readOnly = true)
     fun reviewCountByMemberId(memberId: Long): Int {
         return reviewRepository.countByMemberId(memberId)
     }
