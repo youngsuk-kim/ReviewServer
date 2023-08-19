@@ -1,4 +1,4 @@
-package dev.bread.application
+package dev.bread.domain
 
 data class ReviewResult(
     val userName: String,

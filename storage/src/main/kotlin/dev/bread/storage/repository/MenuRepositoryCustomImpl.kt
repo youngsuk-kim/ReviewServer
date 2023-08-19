@@ -14,7 +14,14 @@ class MenuRepositoryCustomImpl(
 ) : MenuRepositoryCustom {
     override fun findRecommend(memberId: Long): MutableList<ReviewMenuData>? {
         return jpaQueryFactory
-            .select(Projections.fields(ReviewMenuData::class.java, menu.koName, menu.enName, reviewMenu.secretMenu, reviewMenu.menuRate, reviewMenu.recommend))
+            .select(Projections.fields(
+                ReviewMenuData::class.java,
+                menu.koName,
+                menu.enName,
+                reviewMenu.secretMenu,
+                reviewMenu.menuRate,
+                reviewMenu.recommend)
+            )
             .from(menu)
             .join(menu).on(reviewMenu.menuId.eq(menu.id))
             .where(review.memberId.eq(memberId))

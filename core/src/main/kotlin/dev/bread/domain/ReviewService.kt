@@ -1,6 +1,6 @@
-package dev.bread.application
+package dev.bread.domain
 
-import dev.bread.presenter.v1.request.SaveReviewRequest
+import dev.bread.controller.v1.request.SaveReviewRequest
 import dev.bread.storage.repository.MenuRepositoryCustom
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

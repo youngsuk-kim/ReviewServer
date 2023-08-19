@@ -1,8 +1,8 @@
-package dev.bread.presenter.v1
+package dev.bread.controller.v1
 
-import dev.bread.application.ReviewService
-import dev.bread.presenter.v1.request.SaveReviewRequest
-import dev.bread.presenter.v1.response.GetOneReviewResponse
+import dev.bread.domain.ReviewService
+import dev.bread.controller.v1.request.SaveReviewRequest
+import dev.bread.controller.v1.response.GetOneReviewResponse
 import dev.bread.support.response.ApiResponse
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping

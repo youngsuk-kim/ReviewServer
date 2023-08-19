@@ -1,12 +1,12 @@
-package dev.bread.presenter.v1
+package dev.bread.controller.v1
 
-import dev.bread.application.Menu
-import dev.bread.application.ReviewResult
-import dev.bread.application.ReviewService
+import dev.bread.domain.Menu
+import dev.bread.domain.ReviewResult
+import dev.bread.domain.ReviewService
 import dev.bread.doc.RestDocsTest
 import dev.bread.doc.RestDocsUtils.requestPreprocessor
 import dev.bread.doc.RestDocsUtils.responsePreprocessor
-import dev.bread.presenter.v1.request.SaveReviewRequest
+import dev.bread.controller.v1.request.SaveReviewRequest
 import io.mockk.every
 import io.mockk.mockk
 import io.restassured.http.ContentType
@@ -43,7 +43,7 @@ class ReviewControllerTest : RestDocsTest() {
                     "배달이 빨라요",
                     1L,
                     listOf(
-                        dev.bread.presenter.v1.request.Menu(
+                        dev.bread.controller.v1.request.Menu(
                             true,
                             true,
                             1L,

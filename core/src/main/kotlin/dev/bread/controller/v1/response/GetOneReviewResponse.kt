@@ -1,6 +1,6 @@
-package dev.bread.presenter.v1.response
+package dev.bread.controller.v1.response
 
-import dev.bread.application.ReviewResult
+import dev.bread.domain.ReviewResult
 
 data class GetOneReviewResponse(
     val userName: String,

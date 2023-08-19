@@ -1,4 +1,4 @@
-package dev.bread.application
+package dev.bread.domain
 
 import dev.bread.storage.entity.Review
 import dev.bread.storage.repository.ReviewRepository

@@ -1,4 +1,4 @@
-package dev.bread.presenter.v1.request
+package dev.bread.controller.v1.request
 
 import dev.bread.storage.entity.Review
 import dev.bread.storage.entity.ReviewContent
