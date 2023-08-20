@@ -1,7 +1,7 @@
 package dev.bread.storage.repository
 
 import dev.bread.domain.Menu
-import dev.bread.domain.MenuRepository
+import dev.bread.domain.repository.MenuRepository
 import dev.bread.storage.mapper.toDomain
 import org.springframework.stereotype.Repository
 

@@ -1,5 +1,7 @@
-package dev.bread.application
+package dev.bread.service
 
+import dev.bread.application.ReviewCommandService
+import dev.bread.application.implementation.ReviewAppender
 import dev.bread.controller.v1.request.SaveMenu
 import dev.bread.controller.v1.request.SaveReviewHttpRequest
 import dev.bread.controller.v1.request.UpdateMenuHttpRequest
@@ -14,13 +16,13 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.ArgumentMatchers.any
 
 @ExtendWith(MockKExtension::class)
-class ReviewWriteServiceTest {
+class ReviewCommandServiceTest {
 
     @InjectMockKs
-    private lateinit var reviewWriteService: ReviewWriteService
+    private lateinit var reviewCommandService: ReviewCommandService
 
     @MockK
-    private lateinit var reviewWriter: ReviewWriter
+    private lateinit var reviewAppender: ReviewAppender
 
     @Test
     fun `ReviewWriter write 메소드 호출`() {
@@ -29,16 +31,16 @@ class ReviewWriteServiceTest {
             deliverySatisfied = true,
             deliveryReviewReason = "배달이 빨라요",
             storeId = 1L,
-            saveMenus = listOf(SaveMenu(true, true, 1L, 4)),
+            menus = listOf(SaveMenu(true, true, 1L, 4)),
             reviewText = "맛있어요",
             storeRate = 4,
             visibleToOwner = true
         ).toCommand()
 
-        every { reviewWriter.save(request) }.returns(1L)
-        reviewWriteService.write(request)
+        every { reviewAppender.save(request) }.returns(1L)
+        reviewCommandService.write(request)
 
-        verify(exactly = 1) { reviewWriter.save(request) }
+        verify(exactly = 1) { reviewAppender.save(request) }
     }
 
     @Test
@@ -59,9 +61,9 @@ class ReviewWriteServiceTest {
             )
         ).toCommand()
 
-        every { reviewWriter.update(request) }.returns(any())
-        reviewWriteService.update(request)
+        every { reviewAppender.update(request) }.returns(any())
+        reviewCommandService.update(request)
 
-        verify(exactly = 1) { reviewWriter.update(request) }
+        verify(exactly = 1) { reviewAppender.update(request) }
     }
 }

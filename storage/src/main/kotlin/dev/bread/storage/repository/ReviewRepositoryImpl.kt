@@ -1,7 +1,7 @@
 package dev.bread.storage.repository
 
 import dev.bread.domain.Review
-import dev.bread.domain.ReviewRepository
+import dev.bread.domain.repository.ReviewRepository
 import dev.bread.storage.mapper.toDomain
 import dev.bread.storage.mapper.toEntity
 import org.springframework.stereotype.Repository
@@ -16,9 +16,9 @@ class ReviewRepositoryImpl(
             .toDomain()
     }
 
-    override fun findAllByMemberId(memberId: Long): List<Review>? {
+    override fun findAllByMemberId(memberId: Long): List<Review> {
         return jpaReviewRepository.findAllByMemberId(memberId)
-            .map { it.toDomain() }
+            ?.map { it.toDomain() } ?: throw NoSuchElementException("Review not found error occurred.")
     }
 
     override fun save(review: Review): Long {

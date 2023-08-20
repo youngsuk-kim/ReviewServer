@@ -1,7 +1,7 @@
 package dev.bread.storage.repository
 
 import dev.bread.domain.Member
-import dev.bread.domain.MemberRepository
+import dev.bread.domain.repository.MemberRepository
 import org.springframework.stereotype.Repository
 
 @Repository

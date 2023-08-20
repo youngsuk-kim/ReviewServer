@@ -4,15 +4,16 @@ import dev.bread.domain.Review
 import dev.bread.domain.ReviewContent
 import dev.bread.domain.ReviewMenu
 
-data class WriteOneReviewCommand(
+data class UpdateReview(
+    val reviewId: Long,
     val memberId: Long,
-    val reviewMenus: MutableList<ReviewMenu>,
-    val content: ReviewContent,
-    val visibleToOwner: Boolean,
-    val deleted: Boolean = false
+    val reviewMenus: MutableList<UpdateMenu>,
+    val content: UpdateContent,
+    val visibleToOwner: Boolean
 ) {
     fun toDomain(): Review {
         return Review(
+            reviewId = this.reviewId,
             memberId = this.memberId,
             reviewMenus = this.reviewMenus.map {
                 ReviewMenu(
@@ -22,9 +23,8 @@ data class WriteOneReviewCommand(
                     menuId = it.menuId
                 )
             }.toMutableList(),
-            content = ReviewContent(rate = this.content.rate, text = this.content.text),
-            visibleToOwner = this.visibleToOwner,
-            deleted = this.deleted
+            content = ReviewContent(rate = this.content.rate, this.content.text),
+            visibleToOwner = this.visibleToOwner
         )
     }
 }

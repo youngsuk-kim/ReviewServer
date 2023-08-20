@@ -4,11 +4,10 @@ import dev.bread.domain.Review
 import dev.bread.domain.ReviewContent
 import dev.bread.domain.ReviewMenu
 
-data class UpdateOneReviewCommand(
-    val reviewId: Long,
+data class NewReview(
     val memberId: Long,
-    val reviewMenus: MutableList<UpdateOneMenuCommand>,
-    val content: ReviewContent,
+    val reviewMenus: MutableList<NewMenu>,
+    val content: NewReviewContent,
     val visibleToOwner: Boolean
 ) {
     fun toDomain(): Review {
@@ -27,10 +26,3 @@ data class UpdateOneReviewCommand(
         )
     }
 }
-
-data class UpdateOneMenuCommand(
-    val recommend: Boolean,
-    val secretMenu: Boolean,
-    val menuRate: Int,
-    val menuId: Long
-)

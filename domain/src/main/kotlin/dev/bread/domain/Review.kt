@@ -1,16 +1,20 @@
 package dev.bread.domain
 
 data class Review(
-    val reviewId: Long? = null,
-    val memberId: Long,
-    val reviewMenus: MutableList<ReviewMenu>,
-    val reviewImages: MutableList<ReviewImage>? = null,
-    val reviewDelivery: ReviewDelivery? = null,
-    val content: ReviewContent,
-    val visibleToOwner: Boolean,
-    val deleted: Boolean = false
+    var reviewId: Long? = null,
+    var memberId: Long,
+    var reviewMenus: MutableList<ReviewMenu>,
+    var reviewImages: MutableList<ReviewImage>? = null,
+    var reviewDelivery: ReviewDelivery? = null,
+    var content: ReviewContent,
+    var visibleToOwner: Boolean,
+    var deleted: Boolean = false
 ) {
     fun rate(): Int {
         return content.rate
+    }
+
+    fun delete() {
+        this.deleted = true
     }
 }

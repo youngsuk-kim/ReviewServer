@@ -1,8 +1,8 @@
 package dev.bread.controller.v1.request
 
-import dev.bread.application.UpdateOneMenuCommand
-import dev.bread.application.UpdateOneReviewCommand
-import dev.bread.domain.ReviewContent
+import dev.bread.application.UpdateContent
+import dev.bread.application.UpdateMenu
+import dev.bread.application.UpdateReview
 
 data class UpdateReviewHttpRequest(
     val memberId: Long,
@@ -12,19 +12,19 @@ data class UpdateReviewHttpRequest(
     val reviewText: String,
     val menu: List<UpdateMenuHttpRequest>
 ) {
-    fun toCommand(): UpdateOneReviewCommand {
-        return UpdateOneReviewCommand(
+    fun toUpdateReview(): UpdateReview {
+        return UpdateReview(
             reviewId = this.reviewId,
             memberId = this.memberId,
             reviewMenus = menu.map {
-                UpdateOneMenuCommand(
+                UpdateMenu(
                     recommend = it.recommend,
                     secretMenu = it.secretMenu,
                     menuRate = it.menuRate,
                     menuId = it.menuId
                 )
             }.toMutableList(),
-            content = ReviewContent(rate = this.storeRate, text = this.reviewText),
+            content = UpdateContent(rate = this.storeRate, text = this.reviewText),
             visibleToOwner = this.visibleToOwner
         )
     }

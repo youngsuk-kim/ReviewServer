@@ -15,6 +15,12 @@ class ReviewMenuVo(
     @Column(name = "MENU_RATE")
     var menuRate: Int,
 
+    @Column(name = "MENU_KO")
+    var koName: Long,
+
+    @Column(name = "MENU_EN")
+    var enName: Long,
+
     @Column(name = "MENU_ID")
     var menuId: Long
 
