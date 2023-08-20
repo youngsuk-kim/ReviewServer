@@ -2,7 +2,7 @@ package dev.bread.service
 
 import dev.bread.application.ReviewCommandService
 import dev.bread.application.implementation.ReviewAppender
-import dev.bread.controller.v1.request.SaveMenu
+import dev.bread.controller.v1.request.SaveMenuHttpRequest
 import dev.bread.controller.v1.request.SaveReviewHttpRequest
 import dev.bread.controller.v1.request.UpdateMenuHttpRequest
 import dev.bread.controller.v1.request.UpdateReviewHttpRequest
@@ -31,11 +31,11 @@ class ReviewCommandServiceTest {
             deliverySatisfied = true,
             deliveryReviewReason = "배달이 빨라요",
             storeId = 1L,
-            menus = listOf(SaveMenu(true, true, 1L, 4)),
+            menus = listOf(SaveMenuHttpRequest(true, true, 1L, 4)),
             reviewText = "맛있어요",
             storeRate = 4,
             visibleToOwner = true
-        ).toCommand()
+        ).toNewReview()
 
         every { reviewAppender.save(request) }.returns(1L)
         reviewCommandService.write(request)
@@ -59,7 +59,7 @@ class ReviewCommandServiceTest {
                     menuRate = 4
                 )
             )
-        ).toCommand()
+        ).toUpdateReview()
 
         every { reviewAppender.update(request) }.returns(any())
         reviewCommandService.update(request)
