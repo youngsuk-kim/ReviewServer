@@ -45,7 +45,7 @@ class ReviewControllerTest : RestDocsTest() {
                     "배달이 빨라요",
                     1L,
                     listOf(
-                        dev.bread.controller.v1.request.Menu(
+                        dev.bread.controller.v1.request.SaveMenu(
                             true,
                             true,
                             1L,

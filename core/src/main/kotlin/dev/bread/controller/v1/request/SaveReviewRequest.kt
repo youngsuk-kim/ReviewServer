@@ -23,7 +23,7 @@ data class SaveReviewRequest(
     val storeId: Long,
 
     @NotNull
-    val menu: List<Menu>,
+    val saveMenus: List<SaveMenu>,
 
     @Max(value = 5000)
     val reviewText: String,
@@ -38,7 +38,7 @@ data class SaveReviewRequest(
         return Review(
             memberId = this.memberId,
 
-            reviewMenus = this.menu.map {
+            reviewMenus = this.saveMenus.map {
                 ReviewMenu(
                     recommend = it.recommend,
                     secretMenu = it.secretMenu,
@@ -62,7 +62,7 @@ data class SaveReviewRequest(
     }
 }
 
-data class Menu(
+data class SaveMenu(
     val recommend: Boolean,
     val secretMenu: Boolean,
     @NotNull

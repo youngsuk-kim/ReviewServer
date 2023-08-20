@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface JpaReviewRepository : JpaRepository<ReviewEntity, Long> {
     fun countByMemberId(memberId: Long): Int
+    fun findAllByMemberId(memberId: Long): List<ReviewEntity>
 }

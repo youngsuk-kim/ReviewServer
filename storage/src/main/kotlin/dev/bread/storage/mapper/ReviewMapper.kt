@@ -16,7 +16,7 @@ fun Review.toEntity(): ReviewEntity {
         memberId = this.memberId,
         reviewMenus = this.reviewMenus.map { ReviewMenuVo(recommend = it.recommend, secretMenu = it.secretMenu, menuRate = it.menuRate, menuId = it.menuId) }.toMutableList(),
         reviewImages = this.reviewImages?.map { ReviewImageEntity(imageUrl = it.imageUrl) }?.toMutableList(),
-        reviewDelivery = ReviewDeliveryVo(satisfied = this.reviewDelivery.satisfied, reason = this.reviewDelivery.reason),
+        reviewDelivery = ReviewDeliveryVo(satisfied = this.reviewDelivery!!.satisfied, reason = this.reviewDelivery!!.reason),
         content = ReviewContentVo(rate = this.content.rate, text = this.content.text),
         visibleToOwner = this.visibleToOwner,
         deleted = this.deleted

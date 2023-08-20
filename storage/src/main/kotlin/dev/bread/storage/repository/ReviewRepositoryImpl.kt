@@ -11,18 +11,18 @@ class ReviewRepositoryImpl(
     private val jpaReviewRepository: JpaReviewRepository
 ) : ReviewRepository {
     override fun findById(reviewId: Long): Review {
-        val review = jpaReviewRepository.findById(reviewId)
+        return jpaReviewRepository.findById(reviewId)
             .orElseThrow { throw NoSuchElementException("Review not found error occurred.") }
-
-        return review.toDomain()
+            .toDomain()
     }
 
     override fun findAllByMemberId(memberId: Long): List<Review>? {
-        TODO("Not yet implemented")
+        return jpaReviewRepository.findAllByMemberId(memberId)
+            .map { it.toDomain() }
     }
 
     override fun save(review: Review): Review {
-        val reviewEntity = jpaReviewRepository.save(review.toEntity())
-        return reviewEntity.toDomain()
+        return jpaReviewRepository.save(review.toEntity())
+            .toDomain()
     }
 }

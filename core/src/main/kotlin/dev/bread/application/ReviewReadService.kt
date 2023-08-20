@@ -4,7 +4,6 @@ import dev.bread.application.implementation.MemberReader
 import dev.bread.application.implementation.MenuReader
 import dev.bread.application.implementation.ReviewReader
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 
 @Service
 class ReviewReadService(
@@ -13,15 +12,15 @@ class ReviewReadService(
     private val menuReader: MenuReader
 ) {
 
-    @Transactional(readOnly = true)
     fun readOne(reviewId: Long, memberId: Long): ReviewResult {
         val member = memberReader.read(memberId)
         val review = reviewReader.readByMemberId(memberId)
+        val menu = menuReader.findRecommendMenuByMemberId(memberId)
 
         return ReviewResult(
             userName = member?.name,
-            menu = menuReader.findRecommendMenuByMemberId(memberId),
             reviewCount = review?.count(),
+            menu = menu,
             averageRate = review?.map { it.rate() }?.average(),
             storeRate = review?.find { it.reviewId == reviewId }?.rate()
         )

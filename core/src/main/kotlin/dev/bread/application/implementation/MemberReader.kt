@@ -6,11 +6,11 @@ import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
 @Component
+@Transactional(readOnly = true)
 class MemberReader(
     private val memberRepository: MemberRepository
 ) {
 
-    @Transactional(readOnly = true)
     fun read(memberId: Long): Member? {
         return memberRepository.findById(memberId)
     }

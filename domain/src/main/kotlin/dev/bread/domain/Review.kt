@@ -5,7 +5,7 @@ data class Review(
     val memberId: Long,
     val reviewMenus: MutableList<ReviewMenu>,
     val reviewImages: MutableList<ReviewImage>? = null,
-    val reviewDelivery: ReviewDelivery,
+    val reviewDelivery: ReviewDelivery? = null,
     val content: ReviewContent,
     val visibleToOwner: Boolean,
     val deleted: Boolean = false
