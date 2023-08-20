@@ -1,12 +1,13 @@
 package dev.bread.controller.v1
 
-import dev.bread.domain.Menu
-import dev.bread.domain.ReviewResult
-import dev.bread.domain.ReviewService
+import dev.bread.application.MenuResult
+import dev.bread.application.ReviewReadService
+import dev.bread.application.ReviewResult
+import dev.bread.application.ReviewWriteService
+import dev.bread.controller.v1.request.SaveReviewRequest
 import dev.bread.doc.RestDocsTest
 import dev.bread.doc.RestDocsUtils.requestPreprocessor
 import dev.bread.doc.RestDocsUtils.responsePreprocessor
-import dev.bread.controller.v1.request.SaveReviewRequest
 import io.mockk.every
 import io.mockk.mockk
 import io.restassured.http.ContentType
@@ -20,19 +21,20 @@ import org.springframework.restdocs.payload.PayloadDocumentation.responseFields
 
 class ReviewControllerTest : RestDocsTest() {
 
-    private lateinit var service: ReviewService
+    private lateinit var reviewWriteService: ReviewWriteService
+    private lateinit var reviewReadService: ReviewReadService
     private lateinit var controller: ReviewController
 
     @BeforeEach
     fun setUp() {
-        service = mockk()
-        controller = ReviewController(service)
+        reviewWriteService = mockk()
+        controller = ReviewController(reviewWriteService, reviewReadService)
         mockMvc = mockController(controller)
     }
 
     @Test
     fun 리뷰작성() {
-        every { service.write(any()) } returns 1L
+        every { reviewWriteService.write(any()) } returns 1L
 
         given()
             .contentType(ContentType.JSON)
@@ -74,7 +76,7 @@ class ReviewControllerTest : RestDocsTest() {
 
     @Test
     fun 리뷰하나불러오기() {
-        every { service.readOne(1L, 1L) } returns ReviewResult("테스트 유저", listOf(Menu("치킨", "Chicken", false)), 5, 3.0, 4)
+        every { reviewReadService.readOne(1L, 1L) } returns ReviewResult("테스트 유저", listOf(MenuResult("치킨", "Chicken", false)), 5, 3.0, 4)
 
         given()
             .contentType(ContentType.JSON)

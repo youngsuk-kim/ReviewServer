@@ -1,9 +1,9 @@
 package dev.bread.controller.v1.request
 
-import dev.bread.storage.entity.Review
-import dev.bread.storage.entity.ReviewContent
-import dev.bread.storage.entity.ReviewDelivery
-import dev.bread.storage.entity.ReviewMenu
+import dev.bread.domain.Review
+import dev.bread.domain.ReviewContent
+import dev.bread.domain.ReviewDelivery
+import dev.bread.domain.ReviewMenu
 import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotNull

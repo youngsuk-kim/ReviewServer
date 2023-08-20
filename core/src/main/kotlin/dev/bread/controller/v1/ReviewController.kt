@@ -1,6 +1,7 @@
 package dev.bread.controller.v1
 
-import dev.bread.domain.ReviewService
+import dev.bread.application.ReviewReadService
+import dev.bread.application.ReviewWriteService
 import dev.bread.controller.v1.request.SaveReviewRequest
 import dev.bread.controller.v1.response.GetOneReviewResponse
 import dev.bread.support.response.ApiResponse
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class ReviewController(
-    private val reviewService: ReviewService
+    private val reviewWriteService: ReviewWriteService,
+    private val reviewReadService: ReviewReadService
 ) {
 
     @PostMapping("/v1/reviews")
@@ -21,7 +23,7 @@ class ReviewController(
         @Validated @RequestBody
         request: SaveReviewRequest
     ): ApiResponse<Long> {
-        val id = reviewService.write(request)
+        val id = reviewWriteService.write(request)
 
         return ApiResponse.success(id)
     }
@@ -33,7 +35,7 @@ class ReviewController(
     ): ApiResponse<GetOneReviewResponse> {
         return ApiResponse.success(
             GetOneReviewResponse.convert(
-                reviewService.readOne(reviewId, memberId)
+                reviewReadService.readOne(reviewId, memberId)
             )
         )
     }

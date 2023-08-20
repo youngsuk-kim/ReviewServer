@@ -6,6 +6,7 @@ include(
     "storage",
     "logging",
     "monitoring",
+    "domain"
 )
 
 pluginManagement {

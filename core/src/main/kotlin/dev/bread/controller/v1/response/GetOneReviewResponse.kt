@@ -1,6 +1,6 @@
 package dev.bread.controller.v1.response
 
-import dev.bread.domain.ReviewResult
+import dev.bread.application.ReviewResult
 
 data class GetOneReviewResponse(
     val userName: String,
@@ -12,7 +12,7 @@ data class GetOneReviewResponse(
     companion object {
         fun convert(result: ReviewResult): GetOneReviewResponse {
             return GetOneReviewResponse(
-                userName = result.userName,
+                userName = result.userName!!,
                 menu = result.menu?.map { Menu(it.koName, it.enName, it.recommend) },
                 reviewCount = result.reviewCount,
                 averageRate = result.averageRate,

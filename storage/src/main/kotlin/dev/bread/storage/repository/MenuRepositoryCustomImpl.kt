@@ -2,29 +2,32 @@ package dev.bread.storage.repository
 
 import com.querydsl.core.types.Projections
 import com.querydsl.jpa.impl.JPAQueryFactory
-import dev.bread.storage.data.ReviewMenuData
-import dev.bread.storage.entity.QMenu.menu
-import dev.bread.storage.entity.QReview.review
-import dev.bread.storage.entity.QReviewMenu.reviewMenu
+import dev.bread.domain.CustomMenuRepository
+import dev.bread.domain.ReviewMenuData
+import dev.bread.storage.entity.QMenuEntity.menuEntity
+import dev.bread.storage.entity.QReviewEntity.reviewEntity
+import dev.bread.storage.entity.QReviewMenuVo.reviewMenuVo
 import org.springframework.stereotype.Repository
 
 @Repository
 class MenuRepositoryCustomImpl(
     private val jpaQueryFactory: JPAQueryFactory
-) : MenuRepositoryCustom {
+) : CustomMenuRepository {
     override fun findRecommend(memberId: Long): MutableList<ReviewMenuData>? {
         return jpaQueryFactory
-            .select(Projections.fields(
-                ReviewMenuData::class.java,
-                menu.koName,
-                menu.enName,
-                reviewMenu.secretMenu,
-                reviewMenu.menuRate,
-                reviewMenu.recommend)
+            .select(
+                Projections.fields(
+                    ReviewMenuData::class.java,
+                    menuEntity.koName,
+                    menuEntity.enName,
+                    reviewMenuVo.secretMenu,
+                    reviewMenuVo.menuRate,
+                    reviewMenuVo.recommend
+                )
             )
-            .from(menu)
-            .join(menu).on(reviewMenu.menuId.eq(menu.id))
-            .where(review.memberId.eq(memberId))
+            .from(menuEntity)
+            .join(menuEntity).on(reviewMenuVo.menuId.eq(menuEntity.id))
+            .where(reviewEntity.memberId.eq(memberId))
             .fetch()
     }
 }
