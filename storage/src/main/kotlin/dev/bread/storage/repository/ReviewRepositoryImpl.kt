@@ -21,8 +21,8 @@ class ReviewRepositoryImpl(
             .map { it.toDomain() }
     }
 
-    override fun save(review: Review): Review {
+    override fun save(review: Review): Long {
         return jpaReviewRepository.save(review.toEntity())
-            .toDomain()
+            .toDomain().reviewId!!
     }
 }

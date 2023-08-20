@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Positive
 
-data class SaveReviewRequest(
+data class SaveReviewHttpRequest(
 
     @NotNull
     val memberId: Long,
@@ -34,7 +34,7 @@ data class SaveReviewRequest(
 
     val visibleToOwner: Boolean
 ) {
-    fun convert(): Review {
+    fun toReview(): Review {
         return Review(
             memberId = this.memberId,
 

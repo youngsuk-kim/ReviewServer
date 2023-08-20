@@ -1,4 +1,4 @@
-package dev.bread.application.implementation
+package dev.bread.application
 
 import dev.bread.domain.Review
 import dev.bread.domain.ReviewRepository

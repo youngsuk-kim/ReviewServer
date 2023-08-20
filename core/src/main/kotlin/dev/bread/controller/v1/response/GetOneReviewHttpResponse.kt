@@ -2,7 +2,7 @@ package dev.bread.controller.v1.response
 
 import dev.bread.application.ReviewResult
 
-data class GetOneReviewResponse(
+data class GetOneReviewHttpResponse(
     val userName: String,
     val menu: List<Menu>?,
     val reviewCount: Int?,
@@ -10,8 +10,8 @@ data class GetOneReviewResponse(
     val storeRate: Int?
 ) {
     companion object {
-        fun convert(result: ReviewResult): GetOneReviewResponse {
-            return GetOneReviewResponse(
+        fun convert(result: ReviewResult): GetOneReviewHttpResponse {
+            return GetOneReviewHttpResponse(
                 userName = result.userName!!,
                 menu = result.menu?.map { Menu(it.koName, it.enName, it.recommend) },
                 reviewCount = result.reviewCount,

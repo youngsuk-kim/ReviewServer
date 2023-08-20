@@ -1,6 +1,5 @@
-package dev.bread.application.implementation
+package dev.bread.application
 
-import dev.bread.application.MenuResult
 import dev.bread.domain.CustomMenuRepository
 import dev.bread.domain.Menu
 import dev.bread.domain.MenuRepository

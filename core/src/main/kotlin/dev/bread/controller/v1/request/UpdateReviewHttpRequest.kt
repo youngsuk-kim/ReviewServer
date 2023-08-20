@@ -1,11 +1,10 @@
 package dev.bread.controller.v1.request
 
-import dev.bread.domain.Menu
 import dev.bread.domain.Review
 import dev.bread.domain.ReviewContent
 import dev.bread.domain.ReviewMenu
 
-data class UpdateReviewRequest(
+data class UpdateReviewHttpRequest(
     val memberId: Long,
     val reviewId: Long,
     val visibleToOwner: Boolean,
@@ -13,7 +12,7 @@ data class UpdateReviewRequest(
     val reviewText: String,
     val menu: List<UpdateMenu>
 ) {
-    fun convert(): Review {
+    fun toReview(): Review {
         return Review(
             reviewId = this.reviewId,
             memberId = this.memberId,

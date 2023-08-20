@@ -1,11 +1,9 @@
 package dev.bread.application
 
-import dev.bread.application.implementation.ReviewWriter
 import dev.bread.controller.v1.request.SaveMenu
-import dev.bread.controller.v1.request.SaveReviewRequest
+import dev.bread.controller.v1.request.SaveReviewHttpRequest
 import dev.bread.controller.v1.request.UpdateMenu
-import dev.bread.controller.v1.request.UpdateReviewRequest
-import dev.bread.domain.Review
+import dev.bread.controller.v1.request.UpdateReviewHttpRequest
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
@@ -26,7 +24,7 @@ class ReviewWriteServiceTest {
 
     @Test
     fun `ReviewWriter write 메소드 호출`() {
-        val request = SaveReviewRequest(
+        val request = SaveReviewHttpRequest(
             memberId = 1L,
             deliverySatisfied = true,
             deliveryReviewReason = "배달이 빨라요",
@@ -35,7 +33,7 @@ class ReviewWriteServiceTest {
             reviewText = "맛있어요",
             storeRate = 4,
             visibleToOwner = true
-        )
+        ).toReview()
 
         every { reviewWriter.save(request) }.returns(1L)
         reviewWriteService.write(request)
@@ -45,7 +43,7 @@ class ReviewWriteServiceTest {
 
     @Test
     fun `ReviewWriter update 메소드 호출`() {
-        val request = UpdateReviewRequest(
+        val request = UpdateReviewHttpRequest(
             memberId = 1L,
             reviewText = "맛있어요",
             storeRate = 4,
@@ -57,7 +55,7 @@ class ReviewWriteServiceTest {
                 secretMenu = true,
                 menuRate = 4
             ))
-        )
+        ).toReview()
 
         every { reviewWriter.update(request) }.returns(any())
         reviewWriteService.update(request)

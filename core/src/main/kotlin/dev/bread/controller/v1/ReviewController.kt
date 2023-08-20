@@ -2,9 +2,9 @@ package dev.bread.controller.v1
 
 import dev.bread.application.ReviewReadService
 import dev.bread.application.ReviewWriteService
-import dev.bread.controller.v1.request.SaveReviewRequest
-import dev.bread.controller.v1.request.UpdateReviewRequest
-import dev.bread.controller.v1.response.GetOneReviewResponse
+import dev.bread.controller.v1.request.SaveReviewHttpRequest
+import dev.bread.controller.v1.request.UpdateReviewHttpRequest
+import dev.bread.controller.v1.response.GetOneReviewHttpResponse
 import dev.bread.support.response.ApiResponse
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -23,20 +24,20 @@ class ReviewController(
     @PostMapping("/v1/reviews")
     fun save(
         @Validated @RequestBody
-        request: SaveReviewRequest
+        request: SaveReviewHttpRequest
     ): ApiResponse<Long> {
-        val id = reviewWriteService.write(request)
+        val id = reviewWriteService.write(request.toReview())
 
         return ApiResponse.success(id!!)
     }
 
-    @GetMapping("/v1/reviews/{memberId}/{reviewId}")
+    @GetMapping("/v1/reviews/{reviewId}")
     fun getOne(
-        @PathVariable memberId: Long,
-        @PathVariable reviewId: Long
-    ): ApiResponse<GetOneReviewResponse> {
+        @PathVariable reviewId: Long,
+        @RequestParam memberId: Long
+    ): ApiResponse<GetOneReviewHttpResponse> {
         return ApiResponse.success(
-            GetOneReviewResponse.convert(
+            GetOneReviewHttpResponse.convert(
                 reviewReadService.readOne(reviewId, memberId)
             )
         )
@@ -45,10 +46,10 @@ class ReviewController(
     @PutMapping("/v1/reviews")
     fun update(
         @RequestBody
-        request: UpdateReviewRequest
+        request: UpdateReviewHttpRequest
     ): ApiResponse<Unit> {
         return ApiResponse.success(
-            reviewWriteService.update(request)
+            reviewWriteService.update(request.toReview())
         )
     }
 }
