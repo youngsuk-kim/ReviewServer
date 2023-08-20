@@ -2,7 +2,7 @@ package dev.bread.controller.v1
 
 import dev.bread.application.ReviewCommandService
 import dev.bread.application.ReviewQueryService
-import dev.bread.controller.v1.request.SaveMenuHttpRequest
+import dev.bread.controller.v1.request.ReviewMenuSaveHttpRequest
 import dev.bread.controller.v1.request.SaveReviewHttpRequest
 import dev.bread.doc.RestDocsTest
 import dev.bread.doc.RestDocsUtils.requestPreprocessor
@@ -44,7 +44,7 @@ class ReviewControllerTest : RestDocsTest() {
                     "배달이 빨라요",
                     1L,
                     listOf(
-                        SaveMenuHttpRequest(
+                        ReviewMenuSaveHttpRequest(
                             true,
                             true,
                             1L,

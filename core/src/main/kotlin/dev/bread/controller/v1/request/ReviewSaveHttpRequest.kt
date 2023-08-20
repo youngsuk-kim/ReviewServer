@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Positive
 
-data class SaveReviewHttpRequest(
+data class ReviewSaveHttpRequest(
 
     @NotNull
     val memberId: Long,
@@ -22,7 +22,7 @@ data class SaveReviewHttpRequest(
     val storeId: Long,
 
     @NotNull
-    val menus: List<SaveMenuHttpRequest>,
+    val menus: List<ReviewMenuSaveHttpRequest>,
 
     @Max(value = 5000)
     val reviewText: String,
@@ -56,12 +56,3 @@ data class SaveReviewHttpRequest(
     }
 }
 
-data class SaveMenuHttpRequest(
-    val recommend: Boolean,
-    val secretMenu: Boolean,
-    @NotNull
-    val menuId: Long,
-    @Min(value = 5)
-    @Positive
-    val menuRate: Int
-)

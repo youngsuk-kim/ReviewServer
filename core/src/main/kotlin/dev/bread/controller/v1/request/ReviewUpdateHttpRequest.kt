@@ -4,13 +4,13 @@ import dev.bread.application.UpdateContent
 import dev.bread.application.UpdateMenu
 import dev.bread.application.UpdateReview
 
-data class UpdateReviewHttpRequest(
+data class ReviewUpdateHttpRequest(
     val memberId: Long,
     val reviewId: Long,
     val visibleToOwner: Boolean,
     val storeRate: Int,
     val reviewText: String,
-    val menu: List<UpdateMenuHttpRequest>
+    val menu: List<ReviewUpdateMenuHttpRequest>
 ) {
     fun toUpdateReview(): UpdateReview {
         return UpdateReview(
@@ -30,9 +30,3 @@ data class UpdateReviewHttpRequest(
     }
 }
 
-data class UpdateMenuHttpRequest(
-    val menuId: Long,
-    val recommend: Boolean,
-    val secretMenu: Boolean,
-    val menuRate: Int
-)

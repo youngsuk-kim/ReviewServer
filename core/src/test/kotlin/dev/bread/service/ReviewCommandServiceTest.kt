@@ -2,9 +2,9 @@ package dev.bread.service
 
 import dev.bread.application.ReviewCommandService
 import dev.bread.application.implementation.ReviewAppender
-import dev.bread.controller.v1.request.SaveMenuHttpRequest
+import dev.bread.controller.v1.request.ReviewMenuSaveHttpRequest
 import dev.bread.controller.v1.request.SaveReviewHttpRequest
-import dev.bread.controller.v1.request.UpdateMenuHttpRequest
+import dev.bread.controller.v1.request.ReviewUpdateMenuHttpRequest
 import dev.bread.controller.v1.request.UpdateReviewHttpRequest
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
@@ -31,7 +31,7 @@ class ReviewCommandServiceTest {
             deliverySatisfied = true,
             deliveryReviewReason = "배달이 빨라요",
             storeId = 1L,
-            menus = listOf(SaveMenuHttpRequest(true, true, 1L, 4)),
+            menus = listOf(ReviewMenuSaveHttpRequest(true, true, 1L, 4)),
             reviewText = "맛있어요",
             storeRate = 4,
             visibleToOwner = true
@@ -52,7 +52,7 @@ class ReviewCommandServiceTest {
             visibleToOwner = true,
             reviewId = 1L,
             menu = listOf(
-                UpdateMenuHttpRequest(
+                ReviewUpdateMenuHttpRequest(
                     menuId = 1L,
                     recommend = true,
                     secretMenu = true,
