@@ -20,8 +20,8 @@ class MenuReader(
         return menuRepository.findByIdIn(menuIds)
     }
 
-    fun findRecommendMenuByMemberId(memberId: Long): List<MenuResult>? {
+    fun findRecommendMenuByMemberId(memberId: Long): List<ReadOneMenuCommand>? {
         return customMenuRepository.findRecommend(memberId)
-            ?.map { MenuResult(it.koName, it.enName, it.recommend) }
+            ?.map { ReadOneMenuCommand(it.koName, it.enName, it.recommend) }
     }
 }

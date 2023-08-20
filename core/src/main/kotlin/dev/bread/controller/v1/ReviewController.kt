@@ -26,7 +26,7 @@ class ReviewController(
         @Validated @RequestBody
         request: SaveReviewHttpRequest
     ): ApiResponse<Long> {
-        val id = reviewWriteService.write(request.toReview())
+        val id = reviewWriteService.write(request.toCommand())
 
         return ApiResponse.success(id!!)
     }
@@ -37,9 +37,7 @@ class ReviewController(
         @RequestParam memberId: Long
     ): ApiResponse<GetOneReviewHttpResponse> {
         return ApiResponse.success(
-            GetOneReviewHttpResponse.convert(
-                reviewReadService.readOne(reviewId, memberId)
-            )
+            GetOneReviewHttpResponse.from(reviewReadService.readOne(reviewId, memberId))
         )
     }
 
@@ -49,7 +47,7 @@ class ReviewController(
         request: UpdateReviewHttpRequest
     ): ApiResponse<Unit> {
         return ApiResponse.success(
-            reviewWriteService.update(request.toReview())
+            reviewWriteService.update(request.toCommand())
         )
     }
 }

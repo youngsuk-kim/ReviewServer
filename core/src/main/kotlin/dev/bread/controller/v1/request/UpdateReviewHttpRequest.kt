@@ -1,8 +1,8 @@
 package dev.bread.controller.v1.request
 
-import dev.bread.domain.Review
+import dev.bread.application.UpdateOneMenuCommand
+import dev.bread.application.UpdateOneReviewCommand
 import dev.bread.domain.ReviewContent
-import dev.bread.domain.ReviewMenu
 
 data class UpdateReviewHttpRequest(
     val memberId: Long,
@@ -10,14 +10,14 @@ data class UpdateReviewHttpRequest(
     val visibleToOwner: Boolean,
     val storeRate: Int,
     val reviewText: String,
-    val menu: List<UpdateMenu>
+    val menu: List<UpdateMenuHttpRequest>
 ) {
-    fun toReview(): Review {
-        return Review(
+    fun toCommand(): UpdateOneReviewCommand {
+        return UpdateOneReviewCommand(
             reviewId = this.reviewId,
             memberId = this.memberId,
             reviewMenus = menu.map {
-                ReviewMenu(
+                UpdateOneMenuCommand(
                     recommend = it.recommend,
                     secretMenu = it.secretMenu,
                     menuRate = it.menuRate,
@@ -30,7 +30,7 @@ data class UpdateReviewHttpRequest(
     }
 }
 
-data class UpdateMenu(
+data class UpdateMenuHttpRequest(
     val menuId: Long,
     val recommend: Boolean,
     val secretMenu: Boolean,

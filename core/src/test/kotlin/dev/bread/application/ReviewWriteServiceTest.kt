@@ -2,7 +2,7 @@ package dev.bread.application
 
 import dev.bread.controller.v1.request.SaveMenu
 import dev.bread.controller.v1.request.SaveReviewHttpRequest
-import dev.bread.controller.v1.request.UpdateMenu
+import dev.bread.controller.v1.request.UpdateMenuHttpRequest
 import dev.bread.controller.v1.request.UpdateReviewHttpRequest
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
@@ -33,7 +33,7 @@ class ReviewWriteServiceTest {
             reviewText = "맛있어요",
             storeRate = 4,
             visibleToOwner = true
-        ).toReview()
+        ).toCommand()
 
         every { reviewWriter.save(request) }.returns(1L)
         reviewWriteService.write(request)
@@ -49,13 +49,15 @@ class ReviewWriteServiceTest {
             storeRate = 4,
             visibleToOwner = true,
             reviewId = 1L,
-            menu = listOf(UpdateMenu(
-                menuId = 1L,
-                recommend = true,
-                secretMenu = true,
-                menuRate = 4
-            ))
-        ).toReview()
+            menu = listOf(
+                UpdateMenuHttpRequest(
+                    menuId = 1L,
+                    recommend = true,
+                    secretMenu = true,
+                    menuRate = 4
+                )
+            )
+        ).toCommand()
 
         every { reviewWriter.update(request) }.returns(any())
         reviewWriteService.update(request)

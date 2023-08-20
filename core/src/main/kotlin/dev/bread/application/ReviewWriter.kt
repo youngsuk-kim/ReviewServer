@@ -1,6 +1,5 @@
 package dev.bread.application
 
-import dev.bread.domain.Review
 import dev.bread.domain.ReviewRepository
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
@@ -11,11 +10,11 @@ class ReviewWriter(
     private val reviewRepository: ReviewRepository
 ) {
 
-    fun save(review: Review): Long {
-        return reviewRepository.save(review)
+    fun save(command: WriteOneReviewCommand): Long {
+        return reviewRepository.save(command.toDomain())
     }
 
-    fun update(review: Review) {
-        reviewRepository.save(review)
+    fun update(command: UpdateOneReviewCommand) {
+        reviewRepository.save(command.toDomain())
     }
 }

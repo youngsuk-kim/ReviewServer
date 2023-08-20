@@ -1,8 +1,7 @@
 package dev.bread.controller.v1.request
 
-import dev.bread.domain.Review
+import dev.bread.application.WriteOneReviewCommand
 import dev.bread.domain.ReviewContent
-import dev.bread.domain.ReviewDelivery
 import dev.bread.domain.ReviewMenu
 import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.Min
@@ -34,8 +33,8 @@ data class SaveReviewHttpRequest(
 
     val visibleToOwner: Boolean
 ) {
-    fun toReview(): Review {
-        return Review(
+    fun toCommand(): WriteOneReviewCommand {
+        return WriteOneReviewCommand(
             memberId = this.memberId,
 
             reviewMenus = this.saveMenus.map {
@@ -46,11 +45,6 @@ data class SaveReviewHttpRequest(
                     menuId = it.menuId
                 )
             }.toMutableList(),
-
-            reviewDelivery = ReviewDelivery(
-                satisfied = this.deliverySatisfied,
-                reason = this.deliveryReviewReason
-            ),
 
             content = ReviewContent(
                 rate = this.storeRate,

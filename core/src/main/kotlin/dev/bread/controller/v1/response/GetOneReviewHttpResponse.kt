@@ -1,6 +1,6 @@
 package dev.bread.controller.v1.response
 
-import dev.bread.application.ReviewResult
+import dev.bread.application.ReadOneReviewCommand
 
 data class GetOneReviewHttpResponse(
     val userName: String,
@@ -10,13 +10,13 @@ data class GetOneReviewHttpResponse(
     val storeRate: Int?
 ) {
     companion object {
-        fun convert(result: ReviewResult): GetOneReviewHttpResponse {
+        fun from(command: ReadOneReviewCommand): GetOneReviewHttpResponse {
             return GetOneReviewHttpResponse(
-                userName = result.userName!!,
-                menu = result.menu?.map { Menu(it.koName, it.enName, it.recommend) },
-                reviewCount = result.reviewCount,
-                averageRate = result.averageRate,
-                storeRate = result.storeRate
+                userName = command.userName!!,
+                menu = command.menus?.map { Menu(it.koName, it.enName, it.recommend) },
+                reviewCount = command.reviewCount,
+                averageRate = command.averageRate,
+                storeRate = command.storeRate
             )
         }
     }

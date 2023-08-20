@@ -9,15 +9,15 @@ class ReviewReadService(
     private val menuReader: MenuReader
 ) {
 
-    fun readOne(reviewId: Long, memberId: Long): ReviewResult {
+    fun readOne(reviewId: Long, memberId: Long): ReadOneReviewCommand {
         val member = memberReader.read(memberId)
         val review = reviewReader.readByMemberId(memberId)
-        val menu = menuReader.findRecommendMenuByMemberId(memberId)
+        val menus = menuReader.findRecommendMenuByMemberId(memberId)
 
-        return ReviewResult(
+        return ReadOneReviewCommand(
             userName = member?.name,
             reviewCount = review?.count(),
-            menu = menu,
+            menus = menus,
             averageRate = review?.map { it.rate() }?.average(),
             storeRate = review?.find { it.reviewId == reviewId }?.rate()
         )

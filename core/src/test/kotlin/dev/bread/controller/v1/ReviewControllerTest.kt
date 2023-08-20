@@ -1,8 +1,8 @@
 package dev.bread.controller.v1
 
-import dev.bread.application.MenuResult
+import dev.bread.application.ReadOneMenuCommand
+import dev.bread.application.ReadOneReviewCommand
 import dev.bread.application.ReviewReadService
-import dev.bread.application.ReviewResult
 import dev.bread.application.ReviewWriteService
 import dev.bread.controller.v1.request.SaveReviewHttpRequest
 import dev.bread.doc.RestDocsTest
@@ -76,7 +76,7 @@ class ReviewControllerTest : RestDocsTest() {
 
     @Test
     fun 리뷰하나불러오기() {
-        every { reviewReadService.readOne(1L, 1L) } returns ReviewResult("테스트 유저", listOf(MenuResult("치킨", "Chicken", false)), 5, 3.0, 4)
+        every { reviewReadService.readOne(1L, 1L) } returns ReadOneReviewCommand("테스트 유저", 3, listOf(ReadOneMenuCommand("치킨", "Chicken", false)), 3.0, 4)
 
         given()
             .contentType(ContentType.JSON)
