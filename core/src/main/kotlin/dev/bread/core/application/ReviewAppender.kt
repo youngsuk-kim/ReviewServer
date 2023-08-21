@@ -1,31 +1,29 @@
-package dev.bread.core.application
+package dev.bread.application
 
-import dev.bread.storage.repository.ReviewRepository
-import dev.bread.storage.entity.Review
+import dev.bread.application.NewReview
+import dev.bread.application.UpdateReview
+import dev.bread.domain.repository.ReviewRepository
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
 @Component
 @Transactional
 class ReviewAppender(
-    private val reviewRepository: ReviewRepository,
-    private val reviewFinder: ReviewFinder
+    private val reviewRepository: ReviewRepository
 ) {
 
-    fun save(newReview: NewReview): Review {
+    fun save(newReview: NewReview): Long {
         return reviewRepository.save(newReview.toDomain())
     }
 
     fun update(updateReview: UpdateReview) {
-        val review = updateReview.toEntity()
-        reviewRepository.save(review)
-
-        review.update(review.reviewMenus, review.content)
+        reviewRepository.save(updateReview.toDomain())
     }
 
     fun delete(reviewId: Long) {
-        val review = reviewFinder.find(reviewId)
-
+        val review = reviewRepository.findById(reviewId)
         review.delete()
+
+        reviewRepository.save(review)
     }
 }

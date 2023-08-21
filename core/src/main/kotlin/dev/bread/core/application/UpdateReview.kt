@@ -13,6 +13,7 @@ data class UpdateReview(
 ) {
     fun toEntity(): Review {
         return Review(
+            reviewId = this.reviewId,
             memberId = this.memberId,
             reviewMenus = this.reviewMenus.map {
                 ReviewMenu(

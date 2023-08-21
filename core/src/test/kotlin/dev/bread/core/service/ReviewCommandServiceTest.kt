@@ -37,7 +37,7 @@ class ReviewCommandServiceTest {
             visibleOwner = true
         ).toNewReview()
 
-        every { reviewAppender.save(request) }.returns(any())
+        every { reviewAppender.save(request) }.returns(1L)
         reviewCommandService.create(request)
 
         verify(exactly = 1) { reviewAppender.save(request) }

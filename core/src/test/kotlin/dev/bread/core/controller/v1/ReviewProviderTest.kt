@@ -12,7 +12,6 @@ import io.mockk.mockk
 import io.restassured.http.ContentType
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.ArgumentMatchers.any
 import org.springframework.http.HttpStatus
 import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document
 import org.springframework.restdocs.payload.JsonFieldType
@@ -33,7 +32,7 @@ class ReviewProviderTest : RestDocsTest() {
 
     @Test
     fun 리뷰작성() {
-        every { reviewCommandService.create(any()) } returns any()
+        every { reviewCommandService.create(any()) } returns 1L
 
         given()
             .contentType(ContentType.JSON)
