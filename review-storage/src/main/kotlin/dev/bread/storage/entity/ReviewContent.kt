@@ -35,6 +35,4 @@ class ReviewContent(
         result = 31 * result + text.hashCode()
         return result
     }
-
-
 }

@@ -23,7 +23,7 @@ class ReviewMenu(
     var koName: Long? = null,
 
     @Transient
-    var enName: Long? = null,
+    var enName: Long? = null
 
 ) {
     fun update(reviewMenu: ReviewMenu) {

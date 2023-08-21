@@ -18,23 +18,4 @@ class ReviewAppender(
         return reviewRepository.save(newReview.toDomain())
     }
 
-    fun update(updateReview: UpdateReview) {
-        val review = reviewFinder.find(updateReview.reviewId)
-        review.update(
-            reviewMenus = updateReview.reviewMenus.map {
-                ReviewMenu(
-                    it.recommend,
-                    it.secretMenu,
-                    it.menuRate,
-                    it.menuId
-                )
-            }.toMutableList(),
-            content = ReviewContent(updateReview.content.rate, updateReview.content.text)
-        )
-    }
-
-    fun delete(reviewId: Long) {
-        val review = reviewFinder.find(reviewId)
-        review.delete()
-    }
 }

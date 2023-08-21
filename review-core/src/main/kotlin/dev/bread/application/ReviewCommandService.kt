@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service
 
 @Service
 class ReviewCommandService(
-    private val reviewAppender: ReviewAppender
+    private val reviewAppender: ReviewAppender,
+    private val reviewUpdater: ReviewUpdater,
+    private val reviewRemover: ReviewRemover
 ) {
 
     fun create(newReview: NewReview): Review {
@@ -13,10 +15,10 @@ class ReviewCommandService(
     }
 
     fun update(updateReview: UpdateReview) {
-        reviewAppender.update(updateReview)
+        reviewUpdater.update(updateReview)
     }
 
     fun delete(reviewId: Long) {
-        reviewAppender.delete(reviewId)
+        reviewRemover.delete(reviewId)
     }
 }
