@@ -38,10 +38,10 @@ class Review(
     var content: ReviewContent,
 
     @Column(name = "VISIBLE_OWNER")
-    var visibleOwner: Boolean,
+    var isVisibleToOwner: Boolean,
 
     @Column(name = "DELETED")
-    var deleted: Boolean = false
+    var isDeleted: Boolean = false
 
 ) : BaseEntitiy() {
 
@@ -55,6 +55,6 @@ class Review(
     }
 
     fun delete() {
-        this.deleted = true
+        this.isDeleted = true
     }
 }

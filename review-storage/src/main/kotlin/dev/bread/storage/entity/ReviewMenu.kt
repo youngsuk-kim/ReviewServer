@@ -26,7 +26,7 @@ class ReviewMenu(
     var enName: Long? = null,
 
 ) {
-    fun update(reviewMenuVo: ReviewMenu) {
-        this.menuId = reviewMenuVo.menuId
+    fun update(reviewMenu: ReviewMenu) {
+        this.menuId = reviewMenu.menuId
     }
 }

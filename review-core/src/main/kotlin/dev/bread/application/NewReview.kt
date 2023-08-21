@@ -22,7 +22,7 @@ data class NewReview(
                 )
             }.toMutableList(),
             content = ReviewContent(rate = this.content.rate, text = this.content.text),
-            visibleOwner = this.visibleOwner
+            isVisibleToOwner = this.visibleOwner
         )
     }
 }

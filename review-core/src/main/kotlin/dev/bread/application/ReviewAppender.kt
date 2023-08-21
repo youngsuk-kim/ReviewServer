@@ -1,6 +1,8 @@
 package dev.bread.application
 
 import dev.bread.storage.entity.Review
+import dev.bread.storage.entity.ReviewContent
+import dev.bread.storage.entity.ReviewMenu
 import dev.bread.storage.repository.ReviewRepository
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
@@ -17,13 +19,22 @@ class ReviewAppender(
     }
 
     fun update(updateReview: UpdateReview) {
-        reviewRepository.save(updateReview.toEntity())
+        val review = reviewFinder.find(updateReview.reviewId)
+        review.update(
+            reviewMenus = updateReview.reviewMenus.map {
+                ReviewMenu(
+                    it.recommend,
+                    it.secretMenu,
+                    it.menuRate,
+                    it.menuId
+                )
+            }.toMutableList(),
+            content = ReviewContent(updateReview.content.rate, updateReview.content.text)
+        )
     }
 
     fun delete(reviewId: Long) {
         val review = reviewFinder.find(reviewId)
         review.delete()
-
-        reviewRepository.save(review)
     }
 }
