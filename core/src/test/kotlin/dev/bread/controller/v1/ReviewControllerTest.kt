@@ -3,7 +3,7 @@ package dev.bread.controller.v1
 import dev.bread.application.ReviewCommandService
 import dev.bread.application.ReviewQueryService
 import dev.bread.controller.v1.request.ReviewMenuSaveHttpRequest
-import dev.bread.controller.v1.request.SaveReviewHttpRequest
+import dev.bread.controller.v1.request.ReviewSaveHttpRequest
 import dev.bread.doc.RestDocsTest
 import dev.bread.doc.RestDocsUtils.requestPreprocessor
 import dev.bread.doc.RestDocsUtils.responsePreprocessor
@@ -38,7 +38,7 @@ class ReviewControllerTest : RestDocsTest() {
         given()
             .contentType(ContentType.JSON)
             .body(
-                SaveReviewHttpRequest(
+                ReviewSaveHttpRequest(
                     1L,
                     true,
                     "배달이 빨라요",

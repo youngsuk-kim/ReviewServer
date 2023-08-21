@@ -3,9 +3,9 @@ package dev.bread.service
 import dev.bread.application.ReviewCommandService
 import dev.bread.application.implementation.ReviewAppender
 import dev.bread.controller.v1.request.ReviewMenuSaveHttpRequest
-import dev.bread.controller.v1.request.SaveReviewHttpRequest
+import dev.bread.controller.v1.request.ReviewSaveHttpRequest
+import dev.bread.controller.v1.request.ReviewUpdateHttpRequest
 import dev.bread.controller.v1.request.ReviewUpdateMenuHttpRequest
-import dev.bread.controller.v1.request.UpdateReviewHttpRequest
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
@@ -26,7 +26,7 @@ class ReviewCommandServiceTest {
 
     @Test
     fun `ReviewWriter write 메소드 호출`() {
-        val request = SaveReviewHttpRequest(
+        val request = ReviewSaveHttpRequest(
             memberId = 1L,
             deliverySatisfied = true,
             deliveryReviewReason = "배달이 빨라요",
@@ -45,7 +45,7 @@ class ReviewCommandServiceTest {
 
     @Test
     fun `ReviewWriter update 메소드 호출`() {
-        val request = UpdateReviewHttpRequest(
+        val request = ReviewUpdateHttpRequest(
             memberId = 1L,
             reviewText = "맛있어요",
             storeRate = 4,
