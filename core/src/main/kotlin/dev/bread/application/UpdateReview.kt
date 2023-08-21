@@ -13,7 +13,6 @@ data class UpdateReview(
 ) {
     fun toDomain(): Review {
         return Review(
-            reviewId = this.reviewId,
             memberId = this.memberId,
             reviewMenus = this.reviewMenus.map {
                 ReviewMenu(

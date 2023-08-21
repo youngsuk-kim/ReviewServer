@@ -5,5 +5,5 @@ import dev.bread.domain.Review
 interface ReviewRepository {
     fun findById(reviewId: Long): Review
     fun findAllByMemberId(memberId: Long): List<Review>
-    fun save(review: Review): Long
+    fun save(review: Review): Review
 }

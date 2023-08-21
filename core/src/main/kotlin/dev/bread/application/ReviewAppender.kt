@@ -2,6 +2,7 @@ package dev.bread.application
 
 import dev.bread.application.NewReview
 import dev.bread.application.UpdateReview
+import dev.bread.domain.Review
 import dev.bread.domain.repository.ReviewRepository
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
@@ -12,12 +13,15 @@ class ReviewAppender(
     private val reviewRepository: ReviewRepository
 ) {
 
-    fun save(newReview: NewReview): Long {
+    fun save(newReview: NewReview): Review {
         return reviewRepository.save(newReview.toDomain())
     }
 
     fun update(updateReview: UpdateReview) {
-        reviewRepository.save(updateReview.toDomain())
+        val review = reviewRepository.findById(updateReview.reviewId)
+        review.update()
+
+        reviewRepository.save(review)
     }
 
     fun delete(reviewId: Long) {

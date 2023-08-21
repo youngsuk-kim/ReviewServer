@@ -1,5 +1,6 @@
 package dev.bread.application
 
+import dev.bread.domain.Review
 import org.springframework.stereotype.Service
 
 @Service
@@ -7,7 +8,7 @@ class ReviewCommandService(
     private val reviewAppender: ReviewAppender
 ) {
 
-    fun create(newReview: NewReview): Long {
+    fun create(newReview: NewReview): Review {
         return reviewAppender.save(newReview)
     }
 

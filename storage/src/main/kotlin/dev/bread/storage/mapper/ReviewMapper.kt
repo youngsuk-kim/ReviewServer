@@ -13,8 +13,9 @@ import dev.bread.storage.entity.ReviewMenuVo
 
 fun Review.toEntity(): ReviewEntity {
     return ReviewEntity(
+        id = this.id,
         memberId = this.memberId,
-        reviewMenus = this.reviewMenus?.map { ReviewMenuVo(recommend = it.recommend, secretMenu = it.secretMenu, menuRate = it.menuRate, menuId = it.menuId) }?.toMutableList(),
+        reviewMenus = this.reviewMenus?.map { ReviewMenuVo(recommend = it.recommend, secretMenu = it.secretMenu, menuRate = it.menuRate, menuId = it.menuId, koName = "hi", enName = "hi") }?.toMutableList(),
         reviewImages = this.reviewImages?.map { ReviewImageEntity(imageUrl = it.imageUrl) }?.toMutableList(),
         reviewDelivery = ReviewDeliveryVo(satisfied = this.reviewDelivery?.satisfied, reason = this.reviewDelivery?.reason),
         content = ReviewContentVo(rate = this.content.rate, text = this.content.text),
@@ -25,7 +26,7 @@ fun Review.toEntity(): ReviewEntity {
 
 fun ReviewEntity.toDomain(): Review {
     return Review(
-        reviewId = this.id!!,
+        id = this.id!!,
         memberId = this.memberId,
         reviewMenus = this.reviewMenus?.map { ReviewMenu(recommend = it.recommend, secretMenu = it.secretMenu, menuRate = it.menuRate, menuId = it.menuId) },
         reviewImages = this.reviewImages?.map { ReviewImage(imageUrl = it.imageUrl) }?.toMutableList(),

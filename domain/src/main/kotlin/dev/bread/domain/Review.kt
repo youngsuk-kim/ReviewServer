@@ -1,9 +1,7 @@
 package dev.bread.domain
 
-import java.util.Optional
-
 data class Review(
-    var reviewId: Long? = null,
+    var id: Long? = null,
     var memberId: Long,
     var reviewMenus: List<ReviewMenu>? = null,
     var reviewImages: List<ReviewImage>? = null,

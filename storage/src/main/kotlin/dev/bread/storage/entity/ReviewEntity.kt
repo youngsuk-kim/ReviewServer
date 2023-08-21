@@ -13,6 +13,8 @@ import jakarta.persistence.Table
 @Table(name = "REVIEW")
 class ReviewEntity(
 
+    override var id: Long? = null,
+
     @Column(name = "MEMBER_ID")
     var memberId: Long,
 

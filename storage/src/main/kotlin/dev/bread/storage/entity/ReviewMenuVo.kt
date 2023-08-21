@@ -20,10 +20,10 @@ class ReviewMenuVo(
     var menuId: Long,
 
     @Transient
-    var koName: Long? = null,
+    var koName: String? = null,
 
     @Transient
-    var enName: Long? = null,
+    var enName: String? = null,
 
 ) {
     fun update(reviewMenuVo: ReviewMenuVo) {

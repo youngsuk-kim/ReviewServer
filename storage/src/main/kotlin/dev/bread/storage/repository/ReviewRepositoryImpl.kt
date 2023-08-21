@@ -21,8 +21,8 @@ class ReviewRepositoryImpl(
             ?.map { it.toDomain() } ?: throw NoSuchElementException("Review not found error occurred.")
     }
 
-    override fun save(review: Review): Long {
+    override fun save(review: Review): Review {
         return jpaReviewRepository.save(review.toEntity())
-            .toDomain().reviewId!!
+            .toDomain()
     }
 }

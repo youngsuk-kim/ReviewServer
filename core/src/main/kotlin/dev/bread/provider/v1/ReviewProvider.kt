@@ -23,9 +23,9 @@ class ReviewProvider(
         @Validated @RequestBody
         request: ReviewSaveHttpRequest
     ): ApiResponse<Long> {
-        val id = reviewCommandService.create(request.toNewReview())
+        val review = reviewCommandService.create(request.toNewReview())
 
-        return ApiResponse.success(id)
+        return ApiResponse.success(review.id!!)
     }
 
     @PutMapping("/v1/reviews")
