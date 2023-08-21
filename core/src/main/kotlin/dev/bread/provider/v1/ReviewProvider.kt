@@ -1,4 +1,4 @@
-package dev.bread.controller.v1
+package dev.bread.provider.v1
 
 import dev.bread.application.ReviewCommandService
 import dev.bread.application.ReviewQueryService
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class ReviewController(
+class ReviewProvider(
     private val reviewCommandService: ReviewCommandService,
     private val reviewQueryService: ReviewQueryService
 ) {
@@ -24,7 +24,7 @@ class ReviewController(
         @Validated @RequestBody
         request: SaveReviewHttpRequest
     ): ApiResponse<Long> {
-        val id = reviewCommandService.write(request.toNewReview())
+        val id = reviewCommandService.create(request.toNewReview())
 
         return ApiResponse.success(id)
     }

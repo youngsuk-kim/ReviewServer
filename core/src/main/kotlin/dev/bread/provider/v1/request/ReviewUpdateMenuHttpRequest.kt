@@ -1,4 +1,4 @@
-package dev.bread.controller.v1.request
+package dev.bread.provider.v1.request
 
 data class ReviewUpdateMenuHttpRequest(
     val menuId: Long,

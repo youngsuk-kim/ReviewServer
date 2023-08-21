@@ -1,4 +1,4 @@
-package dev.bread.application.implementation
+package dev.bread.application
 
 import dev.bread.application.NewReview
 import dev.bread.application.UpdateReview

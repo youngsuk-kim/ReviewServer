@@ -1,4 +1,4 @@
-package dev.bread.application.implementation
+package dev.bread.application
 
 import dev.bread.domain.Member
 import dev.bread.domain.repository.MemberRepository
@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional
 
 @Component
 @Transactional(readOnly = true)
-class MemberReader(
+class MemberFinder(
     private val memberRepository: MemberRepository
 ) {
 
-    fun read(memberId: Long): Member {
+    fun find(memberId: Long): Member {
         return memberRepository.findById(memberId)
             ?: throw CoreException(ErrorType.NOT_FOUND_ERROR)
     }

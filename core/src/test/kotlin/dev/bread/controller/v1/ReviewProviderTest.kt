@@ -2,11 +2,12 @@ package dev.bread.controller.v1
 
 import dev.bread.application.ReviewCommandService
 import dev.bread.application.ReviewQueryService
-import dev.bread.controller.v1.request.ReviewMenuSaveHttpRequest
-import dev.bread.controller.v1.request.ReviewSaveHttpRequest
+import dev.bread.provider.v1.request.ReviewMenuSaveHttpRequest
+import dev.bread.provider.v1.request.ReviewSaveHttpRequest
 import dev.bread.doc.RestDocsTest
 import dev.bread.doc.RestDocsUtils.requestPreprocessor
 import dev.bread.doc.RestDocsUtils.responsePreprocessor
+import dev.bread.provider.v1.ReviewProvider
 import io.mockk.every
 import io.mockk.mockk
 import io.restassured.http.ContentType
@@ -18,22 +19,22 @@ import org.springframework.restdocs.payload.JsonFieldType
 import org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath
 import org.springframework.restdocs.payload.PayloadDocumentation.responseFields
 
-class ReviewControllerTest : RestDocsTest() {
+class ReviewProviderTest : RestDocsTest() {
 
     private lateinit var reviewCommandService: ReviewCommandService
     private lateinit var reviewQueryService: ReviewQueryService
-    private lateinit var controller: ReviewController
+    private lateinit var controller: ReviewProvider
 
     @BeforeEach
     fun setUp() {
         reviewCommandService = mockk()
-        controller = ReviewController(reviewCommandService, reviewQueryService)
+        controller = ReviewProvider(reviewCommandService, reviewQueryService)
         mockMvc = mockController(controller)
     }
 
     @Test
     fun 리뷰작성() {
-        every { reviewCommandService.write(any()) } returns 1L
+        every { reviewCommandService.create(any()) } returns 1L
 
         given()
             .contentType(ContentType.JSON)

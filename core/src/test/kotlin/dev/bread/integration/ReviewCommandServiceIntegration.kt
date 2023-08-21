@@ -16,7 +16,7 @@ class ReviewCommandServiceIntegration {
 
     @Test
     fun `리뷰 작성`() {
-        reviewCommandService.write(
+        reviewCommandService.create(
             NewReview(
                 memberId = 1L,
                 reviewMenus = listOf(NewMenu(true, true, 3, 4)).toMutableList(),

@@ -1,4 +1,4 @@
-package dev.bread.controller.v1.request
+package dev.bread.provider.v1.request
 
 import dev.bread.application.NewMenu
 import dev.bread.application.NewReview

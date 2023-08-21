@@ -1,11 +1,11 @@
 package dev.bread.service
 
 import dev.bread.application.ReviewCommandService
-import dev.bread.application.implementation.ReviewAppender
-import dev.bread.controller.v1.request.ReviewMenuSaveHttpRequest
-import dev.bread.controller.v1.request.ReviewSaveHttpRequest
-import dev.bread.controller.v1.request.ReviewUpdateHttpRequest
-import dev.bread.controller.v1.request.ReviewUpdateMenuHttpRequest
+import dev.bread.application.ReviewAppender
+import dev.bread.provider.v1.request.ReviewMenuSaveHttpRequest
+import dev.bread.provider.v1.request.ReviewSaveHttpRequest
+import dev.bread.provider.v1.request.ReviewUpdateHttpRequest
+import dev.bread.provider.v1.request.ReviewUpdateMenuHttpRequest
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
@@ -38,7 +38,7 @@ class ReviewCommandServiceTest {
         ).toNewReview()
 
         every { reviewAppender.save(request) }.returns(1L)
-        reviewCommandService.write(request)
+        reviewCommandService.create(request)
 
         verify(exactly = 1) { reviewAppender.save(request) }
     }

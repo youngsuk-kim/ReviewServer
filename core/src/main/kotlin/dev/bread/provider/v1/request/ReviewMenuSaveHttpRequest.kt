@@ -1,4 +1,4 @@
-package dev.bread.controller.v1.request
+package dev.bread.provider.v1.request
 
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotNull

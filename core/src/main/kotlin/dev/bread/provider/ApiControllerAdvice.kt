@@ -1,4 +1,4 @@
-package dev.bread.controller
+package dev.bread.provider
 
 import dev.bread.support.error.CoreException
 import dev.bread.support.error.ErrorType

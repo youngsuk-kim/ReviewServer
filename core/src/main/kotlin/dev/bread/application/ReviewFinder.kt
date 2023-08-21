@@ -1,15 +1,15 @@
-package dev.bread.application.implementation
+package dev.bread.application
 
 import dev.bread.domain.Review
 import dev.bread.domain.repository.ReviewRepository
 import org.springframework.stereotype.Component
 
 @Component
-class ReviewReader(
+class ReviewFinder(
     private val reviewRepository: ReviewRepository
 ) {
 
-    fun read(reviewId: Long): Review {
+    fun find(reviewId: Long): Review {
         return reviewRepository.findById(reviewId)
     }
 }
