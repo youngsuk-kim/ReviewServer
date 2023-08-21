@@ -2,8 +2,8 @@ package dev.bread.provider.v1
 
 import dev.bread.application.ReviewCommandService
 import dev.bread.application.ReviewQueryService
-import dev.bread.controller.v1.request.SaveReviewHttpRequest
-import dev.bread.controller.v1.request.UpdateReviewHttpRequest
+import dev.bread.provider.v1.request.ReviewSaveHttpRequest
+import dev.bread.provider.v1.request.ReviewUpdateHttpRequest
 import dev.bread.support.response.ApiResponse
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -15,14 +15,13 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class ReviewProvider(
-    private val reviewCommandService: ReviewCommandService,
-    private val reviewQueryService: ReviewQueryService
+    private val reviewCommandService: ReviewCommandService
 ) {
 
     @PostMapping("/v1/reviews")
     fun save(
         @Validated @RequestBody
-        request: SaveReviewHttpRequest
+        request: ReviewSaveHttpRequest
     ): ApiResponse<Long> {
         val id = reviewCommandService.create(request.toNewReview())
 
@@ -32,7 +31,7 @@ class ReviewProvider(
     @PutMapping("/v1/reviews")
     fun update(
         @RequestBody
-        request: UpdateReviewHttpRequest
+        request: ReviewUpdateHttpRequest
     ): ApiResponse<Unit> {
         return ApiResponse.success(
             reviewCommandService.update(request.toUpdateReview())
