@@ -10,7 +10,6 @@ dependencies {
     implementation(project(":monitoring"))
     implementation(project(":logging"))
     implementation(project(":storage"))
-    implementation(project(":domain"))
     testImplementation(project(":restdocs"))
 
     implementation("org.springframework.boot:spring-boot-starter-validation:3.1.2")
