@@ -1,11 +1,11 @@
 rootProject.name = "mini-review"
 
 include(
-    "core",
-    "restdocs",
-    "storage",
-    "logging",
-    "monitoring",
+    "review-core",
+    "review-docs",
+    "review-storage",
+    "review-logging",
+    "review-monitoring",
 )
 
 pluginManagement {
