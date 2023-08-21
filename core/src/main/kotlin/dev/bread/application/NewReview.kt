@@ -6,7 +6,7 @@ import dev.bread.domain.ReviewMenu
 
 data class NewReview(
     val memberId: Long,
-    val reviewMenus: MutableList<NewMenu>,
+    val reviewMenus: List<NewMenu>,
     val content: NewReviewContent,
     val visibleToOwner: Boolean
 ) {
@@ -20,7 +20,7 @@ data class NewReview(
                     menuRate = it.menuRate,
                     menuId = it.menuId
                 )
-            }.toMutableList(),
+            },
             content = ReviewContent(rate = this.content.rate, text = this.content.text),
             visibleToOwner = this.visibleToOwner
         )

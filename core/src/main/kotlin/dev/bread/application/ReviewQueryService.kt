@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service
 class ReviewQueryService(
     private val reviewFinder: ReviewFinder
 ) {
-
     fun getOne(reviewId: Long, memberId: Long): Review {
         return reviewFinder.find(reviewId)
     }

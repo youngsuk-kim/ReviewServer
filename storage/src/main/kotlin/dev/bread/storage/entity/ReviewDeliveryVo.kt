@@ -7,7 +7,7 @@ import jakarta.persistence.Embeddable
 class ReviewDeliveryVo(
 
     @Column(name = "SATISFIED")
-    var satisfied: Boolean,
+    var satisfied: Boolean?,
 
     @Column(name = "REASON", unique = true)
     var reason: String?

@@ -2,6 +2,7 @@ package dev.bread.storage.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
+import jakarta.persistence.Transient
 
 @Embeddable
 class ReviewMenuVo(
@@ -15,14 +16,14 @@ class ReviewMenuVo(
     @Column(name = "MENU_RATE")
     var menuRate: Int,
 
-    @Column(name = "MENU_KO")
-    var koName: Long,
-
-    @Column(name = "MENU_EN")
-    var enName: Long,
-
     @Column(name = "MENU_ID")
-    var menuId: Long
+    var menuId: Long,
+
+    @Transient
+    var koName: Long? = null,
+
+    @Transient
+    var enName: Long? = null,
 
 ) {
     fun update(reviewMenuVo: ReviewMenuVo) {

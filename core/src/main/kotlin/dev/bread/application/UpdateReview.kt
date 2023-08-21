@@ -22,7 +22,7 @@ data class UpdateReview(
                     menuRate = it.menuRate,
                     menuId = it.menuId
                 )
-            }.toMutableList(),
+            },
             content = ReviewContent(rate = this.content.rate, this.content.text),
             visibleToOwner = this.visibleToOwner
         )

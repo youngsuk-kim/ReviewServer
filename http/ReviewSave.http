@@ -1,0 +1,23 @@
+# 리뷰 저장 API
+
+POST http://localhost:8080/v1/reviews
+Content-Type: application/json
+
+{
+  "memberId": 1,
+  "deliverySatisfied": true,
+  "deliveryReviewReason": "배달이 빨라요",
+  "storeId": 1,
+  "menus": [
+    {
+      "recommend": true,
+      "secretMenu": true,
+      "menuId": 1,
+      "menuRate": 3
+    }
+  ],
+  "reviewText": "맛있어요",
+  "storeRate": 4,
+  "visibleToOwner": true
+}
+

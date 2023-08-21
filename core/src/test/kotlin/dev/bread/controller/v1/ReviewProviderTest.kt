@@ -22,13 +22,12 @@ import org.springframework.restdocs.payload.PayloadDocumentation.responseFields
 class ReviewProviderTest : RestDocsTest() {
 
     private lateinit var reviewCommandService: ReviewCommandService
-    private lateinit var reviewQueryService: ReviewQueryService
     private lateinit var controller: ReviewProvider
 
     @BeforeEach
     fun setUp() {
         reviewCommandService = mockk()
-        controller = ReviewProvider(reviewCommandService, reviewQueryService)
+        controller = ReviewProvider(reviewCommandService)
         mockMvc = mockController(controller)
     }
 

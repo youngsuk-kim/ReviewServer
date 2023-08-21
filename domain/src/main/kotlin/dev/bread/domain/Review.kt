@@ -1,10 +1,12 @@
 package dev.bread.domain
 
+import java.util.Optional
+
 data class Review(
     var reviewId: Long? = null,
     var memberId: Long,
-    var reviewMenus: MutableList<ReviewMenu>,
-    var reviewImages: MutableList<ReviewImage>? = null,
+    var reviewMenus: List<ReviewMenu>? = null,
+    var reviewImages: List<ReviewImage>? = null,
     var reviewDelivery: ReviewDelivery? = null,
     var content: ReviewContent,
     var visibleToOwner: Boolean,

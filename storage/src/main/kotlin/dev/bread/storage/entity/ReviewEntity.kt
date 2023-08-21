@@ -21,24 +21,24 @@ class ReviewEntity(
         name = "REVIEW_MENU",
         joinColumns = [JoinColumn(name = "REVIEW_ID", referencedColumnName = "ID")]
     )
-    var reviewMenus: MutableList<ReviewMenuVo>,
+    var reviewMenus: MutableList<ReviewMenuVo>?,
 
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
         name = "REVIEW_IMAGE",
         joinColumns = [JoinColumn(name = "REVIEW_ID", referencedColumnName = "ID")]
     )
-    var reviewImages: MutableList<ReviewImageEntity>? = null,
+    var reviewImages: MutableList<ReviewImageEntity>?,
 
     @Embedded
     @Column(name = "MENU_REVIEW")
-    var reviewDelivery: ReviewDeliveryVo,
+    var reviewDelivery: ReviewDeliveryVo?,
 
     @Embedded
     var content: ReviewContentVo,
 
-    @Column(name = "VISIBLE_TO_OWNER")
-    var visibleToOwner: Boolean,
+    @Column(name = "VISIBLE_OWNER")
+    var visibleOwner: Boolean,
 
     @Column(name = "DELETED")
     var deleted: Boolean = false
@@ -46,7 +46,7 @@ class ReviewEntity(
 ) : BaseEntity() {
 
     fun update(reviewMenuVo: ReviewMenuVo, reviewImageEntity: ReviewImageEntity, content: ReviewContentVo) {
-        this.reviewMenus.map { it.update(reviewMenuVo) }
+        this.reviewMenus?.map { it.update(reviewMenuVo) }
         this.reviewImages?.map { it.update(reviewImageEntity) }
     }
 
@@ -57,4 +57,5 @@ class ReviewEntity(
     fun delete(delete: Boolean) {
         this.deleted = deleted
     }
+
 }
