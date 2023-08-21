@@ -6,7 +6,7 @@ include(
     "review-storage",
     "review-logging",
     "review-monitoring",
-    "review-file"
+    "review-client"
 )
 
 pluginManagement {

@@ -10,7 +10,7 @@ dependencies {
     implementation(project(":review-monitoring"))
     implementation(project(":review-logging"))
     implementation(project(":review-storage"))
-    implementation(project(":review-file"))
+    implementation(project(":review-client"))
     testImplementation(project(":review-docs"))
 
     implementation("org.springframework.boot:spring-boot-starter-validation:3.1.2")

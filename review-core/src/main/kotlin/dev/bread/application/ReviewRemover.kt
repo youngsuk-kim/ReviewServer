@@ -1,6 +1,5 @@
 package dev.bread.application
 
-import dev.bread.storage.repository.ReviewRepository
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
