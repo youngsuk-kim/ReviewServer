@@ -15,6 +15,6 @@ class FakeImageUploaderTest {
 
     @Test
     fun `파일 업로드`() {
-        imageUploader.execute(setOf(File("test.png")) )
+        imageUploader.execute(setOf(File("test.png")))
     }
 }
