@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Positive
+import org.springframework.web.multipart.MultipartFile
+import java.io.File
 
 data class ReviewSaveHttpRequest(
 
@@ -31,7 +33,9 @@ data class ReviewSaveHttpRequest(
     @Positive
     val storeRate: Int,
 
-    val visibleOwner: Boolean
+    val visibleOwner: Boolean,
+
+    val files: List<MultipartFile>
 ) {
     fun toNewReview(): NewReview {
         return NewReview(
@@ -53,5 +57,9 @@ data class ReviewSaveHttpRequest(
 
             visibleOwner = this.visibleOwner
         )
+    }
+
+    fun toFile(): Set<File> {
+        return this.files.map { it.resource.file }.toSet()
     }
 }

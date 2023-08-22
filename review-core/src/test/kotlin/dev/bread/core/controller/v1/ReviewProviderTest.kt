@@ -53,7 +53,8 @@ class ReviewProviderTest : RestDocsTest() {
                     ),
                     "맛있어요",
                     4,
-                    true
+                    true,
+                    emptyList()
                 )
             )
             .post("/v1/reviews")

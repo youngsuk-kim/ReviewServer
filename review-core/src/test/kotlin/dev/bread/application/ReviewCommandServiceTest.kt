@@ -5,8 +5,10 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
 
 @SpringBootTest
+@ActiveProfiles("local")
 class ReviewCommandServiceTest {
 
     @Autowired
@@ -34,9 +36,10 @@ class ReviewCommandServiceTest {
             visibleOwner = true
         )
 
-        val sut = service.create(newReview)
+        val id = service.create(newReview)
+        val foundReview = reviewFinder.find(id!!)
 
-        assertThat(sut.content).isEqualTo(ReviewContent(3, "그럭 저럭 먹을만해요"))
+        assertThat(foundReview.content).isEqualTo(ReviewContent(3, "그럭 저럭 먹을만해요"))
     }
 
     @Test
@@ -58,7 +61,7 @@ class ReviewCommandServiceTest {
             visibleOwner = true
         )
 
-        val review = service.create(newReview)
+        val id = service.create(newReview)
 
         val updateReview = UpdateReview(
             reviewId = 1L,
@@ -79,7 +82,7 @@ class ReviewCommandServiceTest {
         )
 
         service.update(updateReview)
-        val foundReview = reviewFinder.find(review.id!!)
+        val foundReview = reviewFinder.find(id!!)
 
         assertThat(foundReview.content.rate).isEqualTo(2)
     }
@@ -103,10 +106,10 @@ class ReviewCommandServiceTest {
             visibleOwner = true
         )
 
-        val review = service.create(newReview)
+        val id = service.create(newReview)
 
-        service.delete(review.id!!)
-        val foundReview = reviewFinder.find(review.id!!)
+        service.delete(id!!)
+        val foundReview = reviewFinder.find(id)
 
         assertThat(foundReview.isDeleted).isEqualTo(true)
     }
