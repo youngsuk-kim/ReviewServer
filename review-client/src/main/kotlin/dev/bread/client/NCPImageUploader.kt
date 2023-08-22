@@ -7,7 +7,7 @@ import java.io.File
 @Component
 @Profile("live")
 class NCPImageUploader : ImageUploader {
-    override fun execute(files: List<File>) {
+    override fun execute(files: Set<File>) {
         TODO("Not yet implemented")
     }
 }

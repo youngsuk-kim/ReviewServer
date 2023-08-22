@@ -14,7 +14,7 @@ class FakeImageUploader : ImageUploader {
 
     private val log: Logger = Logger.getLogger("FakeImageLoader")
 
-    override fun execute(files: List<File>) {
+    override fun execute(files: Set<File>) {
         log.info { "<<<<<<<<<< FILE UPLOAD EXECUTE >>>>>>>>>>>>" }
         Thread.sleep(TimeUnit.SECONDS.toSeconds(2L))
         files.forEach { each -> log.info{ "<<Name: ${each.name}>> upload success at ${LocalDateTime.now()}" } }
